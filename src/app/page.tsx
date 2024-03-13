@@ -37,8 +37,8 @@ export default function Home() {
         </nav>
         <div className="flex container">
           <SideBar expanded={expanded}>
-            <SideBarItem icon={<Utensils size={20} />} text="Pedidos" active />
-            <SideBarItem icon={<DoorOpen size={20} />} text="Mesas" active/>
+            <SideBarItem icon={<Utensils size={20} />} text="Pedidos" />
+            <SideBarItem icon={<DoorOpen size={20} />} text="Mesas"/>
             <SideBarItem icon={<PieChart size={20} />} text="Relatórios" alert />
             <SideBarItem icon={<Bolt size={20} />} text="Configurações" active alert />
           </SideBar>
