@@ -20,11 +20,11 @@ const tables = [
 ];
 
 const products = [
-  { id: 1, name: "Product 1", cod: 11, valor: '99,99' },
-  { id: 2, name: "Product 2", cod: 12, valor: '99,99' },
-  { id: 3, name: "Product 3", cod: 12, valor: '99,99' },
-  { id: 4, name: "Product 4", cod: 12, valor: '99,99' },
-  { id: 5, name: "Product 5", cod: 12, valor: '99,99' },
+  { id: 1, name: "Hamburguer", cod: 11, valor: '99,99', img: 'https://unsplash.com/photos/sc5sTPMrVfk/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzEwNTIxMjIwfA&force=true&w=640', quantidade: 1 },
+  { id: 2, name: "Batata-frita", cod: 12, valor: '99,99', img: 'https://unsplash.com/photos/lpsbMRRqMQw/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8ZnJpdGFzfHB0fDB8fHx8MTcxMDUyMTQ3MHww&force=true&w=640' },
+  { id: 3, name: "Frango frito", cod: 12, valor: '99,99', img: 'https://unsplash.com/photos/RWAToPPP9RY/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8ZnJhbmdvJTIwZnJpdG98cHR8MHx8fHwxNzEwNTIxNDk5fDA&force=true&w=640' },
+  { id: 4, name: "Camarão", cod: 12, valor: '99,99', img: 'https://unsplash.com/photos/4LoGKVmUJsI/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8Y2FtYXIlQzMlQTNvfHB0fDB8fHx8MTcxMDUyMTUzMnww&force=true&w=640' },
+  { id: 5, name: "Coca-cola", cod: 12, valor: '99,99', img: 'https://unsplash.com/photos/z8PEoNIlGlg/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzEwNTIxNTYzfA&force=true&w=640' },
   // Outros produtos..., valor: '99,99'
 ];
 

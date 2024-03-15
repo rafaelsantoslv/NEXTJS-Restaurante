@@ -14,7 +14,7 @@ import {
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { Search } from "lucide-react";
+import { match } from "assert";
 
 interface Table {
     id: number;
@@ -25,7 +25,9 @@ interface Product {
     id: number;
     name: string;
     cod: number;
-    valor: string
+    valor: string;
+    img?: any;
+    quantidade?: any
 }
 
 interface Props {
@@ -35,6 +37,14 @@ interface Props {
 
 function TableStatus({ tables, products }: Props) {
     const [searchTerm, setSearchTerm] = useState<string>('');
+
+
+    const index = () => {
+        return (
+            <div>index</div>
+        )
+    }
+
 
     const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -78,45 +88,31 @@ function TableStatus({ tables, products }: Props) {
                                 />
                             </div>
                             <div>
-                                {/* {filteredProducts.map(product => (
-                                    <div key={product.id} className="flex items-center justify-between border-b py-2">
-                                        <span>{product.cod}</span>
-                                        <span>{product.name}</span>
-                                        <Button type="button" variant="outline">Remover</Button>
-                                        <Button type="button">Adicionar</Button>
-                                    </div>
-                                ))} */}
                                 <TableUI>
                                     <TableCaption>PEDIDOS</TableCaption>
-                                    <TableHeader>
-                                        <TableRow>
-                                            <TableHead>Codigo</TableHead>
-                                            <TableHead>Nome</TableHead>
-                                            <TableHead>Quantidade</TableHead>
-                                            <TableHead>Valor</TableHead>
-
-                                        </TableRow>
-                                    </TableHeader>
+                                    <HeaderTable />
                                     <TableBody>
                                         {filteredProducts.map(product => (
                                             <TableRow key={product.id}>
-                                                <TableCell>{product.cod}</TableCell>
+                                                <TableCell>
+                                                    <img src={product.img}
+                                                        className="w-20 h-20" />
+                                                </TableCell>
                                                 <TableCell>{product.name}</TableCell>
+                                                <TableCell>R$ {product.valor}</TableCell>
                                                 <TableCell>
                                                     <div className="flex space-x-1">
-                                                        <div><Button>-</Button></div>
-                                                        <div><Button>10</Button></div>
-                                                        <div><Button>+</Button></div>
-
+                                                        <div><Button type="button">-</Button></div>
+                                                        <div><Button>1</Button></div>
+                                                        <div><Button type="button">+</Button></div>
                                                     </div>
                                                 </TableCell>
-                                                <TableCell>R$ {product.valor}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
                                     <TableFooter>
                                         <TableRow>
-                                            <TableCell className="col-span-3">
+                                            <TableCell>
                                                 Total
                                             </TableCell>
                                             <TableCell className="text-right">R$ 2500</TableCell>
@@ -127,6 +123,7 @@ function TableStatus({ tables, products }: Props) {
                             <DialogFooter>
                                 <DialogClose>
                                     <Button type="button" variant='outline'>Cancelar</Button>
+                                    <Button type="button" className="ml-2">Confirmar</Button>
                                 </DialogClose>
                             </DialogFooter>
                         </form>
@@ -136,6 +133,27 @@ function TableStatus({ tables, products }: Props) {
         </div>
     );
 }
+
+
+const HeaderTable = () => {
+    return (
+        <TableHeader>
+            <TableRow>
+                <TableHead>Produto</TableHead>
+                <TableHead>Nome</TableHead>
+                <TableHead>Valor</TableHead>
+                <TableHead>Quantidade</TableHead>
+
+            </TableRow>
+        </TableHeader>
+    )
+}
+
+
+
+
+
+
 
 
 export default TableStatus;
