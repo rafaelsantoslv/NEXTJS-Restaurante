@@ -14,7 +14,7 @@ import {
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { match } from "assert";
+
 
 interface Table {
     id: number;
@@ -37,7 +37,7 @@ interface Props {
 
 function TableStatus({ tables, products }: Props) {
     const [searchTerm, setSearchTerm] = useState<string>('');
-
+    const [quantidade, setQuantidade] = useState(0)
 
     const index = () => {
         return (
@@ -49,6 +49,16 @@ function TableStatus({ tables, products }: Props) {
     const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+
+
+    const aumentaQuantidade = () => {
+        setQuantidade(quantidade + 1)
+    }
+    const diminuiQuantidade = () => {
+        setQuantidade(quantidade - 1)
+    }
+
     return (
         <div className="grid grid-cols-3 gap-4 h-full w-full">
             {tables.map(table => (
@@ -102,9 +112,9 @@ function TableStatus({ tables, products }: Props) {
                                                 <TableCell>R$ {product.valor}</TableCell>
                                                 <TableCell>
                                                     <div className="flex space-x-1">
-                                                        <div><Button type="button">-</Button></div>
-                                                        <div><Button>1</Button></div>
-                                                        <div><Button type="button">+</Button></div>
+                                                        <div><Button type="button" onClick={diminuiQuantidade}>-</Button></div>
+                                                        <div><Button>{quantidade}</Button></div>
+                                                        <div><Button type="button" onClick={aumentaQuantidade}>+</Button></div>
                                                     </div>
                                                 </TableCell>
                                             </TableRow>
@@ -143,7 +153,6 @@ const HeaderTable = () => {
                 <TableHead>Nome</TableHead>
                 <TableHead>Valor</TableHead>
                 <TableHead>Quantidade</TableHead>
-
             </TableRow>
         </TableHeader>
     )
