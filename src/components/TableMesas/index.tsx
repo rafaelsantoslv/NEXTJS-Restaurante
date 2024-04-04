@@ -53,7 +53,7 @@ function TableStatus({ tables, products }: Props) {
 
 
 
-    const adicionarQuantidade = (id) => {
+    const adicionarQuantidade = (id: Product) => {
         const novosItens = itens.map(item => {
             if (item.id === id) {
                 return { ...item, quantidade: item.quantidade + 1 }
@@ -64,10 +64,10 @@ function TableStatus({ tables, products }: Props) {
         setItens(novosItens)
     }
 
-    const removeQuantidade = (id) => {
+    const removeQuantidade = (id: Product) => {
         const novosItens = itens.map(item => {
             if (item.id === id) {
-                return { ...item, quantidade: item.quantidade - 1 }
+                return { ...item, quantidade: Math.max(0, item.quantidade - 1) }
             }
             return item
         });
@@ -172,12 +172,6 @@ const HeaderTable = () => {
         </TableHeader>
     )
 }
-
-
-
-
-
-
 
 
 export default TableStatus;
