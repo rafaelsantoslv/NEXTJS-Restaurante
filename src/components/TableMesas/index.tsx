@@ -38,6 +38,7 @@ interface Props {
 function TableStatus({ tables, products }: Props) {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [quantidade, setQuantidade] = useState(0)
+    const [itens, setItens] = useState(products)
 
     const index = () => {
         return (
@@ -46,17 +47,31 @@ function TableStatus({ tables, products }: Props) {
     }
 
 
-    const filteredProducts = products.filter(product =>
+    const filteredProducts = itens.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
 
 
-    const aumentaQuantidade = () => {
-        setQuantidade(quantidade + 1)
+    const adicionarQuantidade = (id) => {
+        const novosItens = itens.map(item => {
+            if (item.id === id) {
+                return { ...item, quantidade: item.quantidade + 1 }
+            }
+            return item
+        });
+
+        setItens(novosItens)
     }
-    const diminuiQuantidade = () => {
-        setQuantidade(quantidade - 1)
+
+    const removeQuantidade = (id) => {
+        const novosItens = itens.map(item => {
+            if (item.id === id) {
+                return { ...item, quantidade: item.quantidade - 1 }
+            }
+            return item
+        });
+        setItens(novosItens)
     }
 
     return (
@@ -102,19 +117,19 @@ function TableStatus({ tables, products }: Props) {
                                     <TableCaption>PEDIDOS</TableCaption>
                                     <HeaderTable />
                                     <TableBody>
-                                        {filteredProducts.map(product => (
-                                            <TableRow key={product.id}>
+                                        {filteredProducts.map(itens => (
+                                            <TableRow key={itens.id}>
                                                 <TableCell>
-                                                    <img src={product.img}
+                                                    <img src={itens.img}
                                                         className="w-20 h-20" />
                                                 </TableCell>
-                                                <TableCell>{product.name}</TableCell>
-                                                <TableCell>R$ {product.valor}</TableCell>
+                                                <TableCell>{itens.name}</TableCell>
+                                                <TableCell>R$ {itens.valor}</TableCell>
                                                 <TableCell>
                                                     <div className="flex space-x-1">
-                                                        <div><Button type="button" onClick={diminuiQuantidade}>-</Button></div>
-                                                        <div><Button>{quantidade}</Button></div>
-                                                        <div><Button type="button" onClick={aumentaQuantidade}>+</Button></div>
+                                                        <div><Button type="button" onClick={() => removeQuantidade(itens.id)}>-</Button></div>
+                                                        <div><Button>{itens.quantidade}</Button></div>
+                                                        <div><Button type="button" onClick={() => adicionarQuantidade(itens.id)}>+</Button></div>
                                                     </div>
                                                 </TableCell>
                                             </TableRow>
